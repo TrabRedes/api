@@ -3,14 +3,10 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const authRouter = require('./routers/authRouter');
-<<<<<<< HEAD
 const rootRouter = require ('./routers/root');
 const dashboardRouter = require ('./routers/dashboardRouter');
 const Message = require('./models/message');
 
-=======
-const rootRouter = require ('./routers/root')
->>>>>>> parent of 2658f21... chat funcionando com salvamento de mensagens no banco
 const PORT = process.env.PORT || '3000'
 const app = express();
 const http = require('http').Server(app);
@@ -48,10 +44,7 @@ io.on('connection', (socket) => {
     socket.on('typing', (data) => {
     	socket.broadcast.emit('typing', {username : socket.username})
     })
-<<<<<<< HEAD
     socket.on('save_on_database', (data) => {
         Message.create(data);
     })
-=======
->>>>>>> parent of 2658f21... chat funcionando com salvamento de mensagens no banco
 })
