@@ -1,6 +1,6 @@
 $(function(){
  //make connection
- var socket = io.connect('http://localhost:3333')
+ var socket = io.connect('https://redes-chat.mybluemix.net/')
  //buttons and inputs
  var message = $("#message")
  var username = $("#username")
