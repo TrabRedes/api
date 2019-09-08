@@ -1,5 +1,7 @@
+const path = require('path');
+
 module.exports = {
-    helloWorld(req, res) {
-        res.json({ message: 'Hello World' });
+    root(req, res) {
+        res.sendFile(path.join(__dirname.replace('/controllers', '')+'/views/index.html'));
     },
 };
