@@ -17,8 +17,7 @@ $(function(){
     socket.emit('save_on_database',data) 
     
 }
- //Emit message
- send_message.click(function(){
+const sendMessage = ()=>{
     const data = {
         username: usernameVal, 
         message : message.val(),
@@ -28,8 +27,18 @@ $(function(){
     socket.emit('new_message', {message : message.val(), token:data.token })
     feedback.html('');
     message.val('');
+}
+ //Emit message
+ send_message.click(function(){
+    sendMessage();
  })
 
+ var input = document.getElementById("message");
+input.addEventListener("keyup", function(event) {
+  if (event.keyCode === 13) {
+    sendMessage();
+  }
+});
  //Listen on new_message
  socket.on("new_message", (data) => {
      messageEvent(data, 'recebida')
