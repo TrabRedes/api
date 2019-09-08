@@ -26,13 +26,13 @@ $(function(){
     }
     messageEvent(data, 'enviada')
     socket.emit('new_message', {message : message.val(), token:data.token })
+    feedback.html('');
+    message.val('');
  })
 
  //Listen on new_message
  socket.on("new_message", (data) => {
      messageEvent(data, 'recebida')
-     feedback.html('');
-     message.val('');
      chatroom.append("<p class='message'>" + data.username + ": " + data.message + "</p>")
  })
 
