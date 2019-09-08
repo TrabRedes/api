@@ -1,21 +1,30 @@
 $(function(){
- //make connection
- var socket = io.connect('http://localhost:3333')
- //buttons and inputs
- var message = $("#message")
- var username = $("#username")
- var send_message = $("#send_message")
- var send_username = $("#send_username")
- var chatroom = $("#chatroom")
- var feedback = $("#feedback")
- let usernameVal = 'Anonymous'
-
-
+    //make connection
+    var socket = io.connect('http://localhost:3333')
+    //buttons and inputs
+    var message = $("#message")
+    var username = $("#username")
+    var send_message = $("#send_message")
+    var send_username = $("#send_username")
+    var chatroom = $("#chatroom")
+    var feedback = $("#feedback")
+    let usernameVal = 'Anonymous'
+    
+    
+    
+    /**
+     * data = {
+     *   userToken;
+     *   tokenMessage: implementada no futuro
+     *   type: received|sent 
+     * }
+     */
  const messageEvent = (data, status)=>{
     data.time = new Date().toISOString();
     data.status = status
     debugger
-    socket.emit('save_on_database',data)    
+    socket.emit('save_on_database',data) 
+    
 }
  //Emit message
  send_message.click(function(){
@@ -53,12 +62,5 @@ $(function(){
  socket.on('typing', (data) => {
      feedback.html("<p><i>" + data.username + " is typing a message..." + "</i></p>")
  }) 
-});
 
-/**
- * data = {
- *   userToken;
- *   tokenMessage: implementada no futuro
- *   type: received|sent 
- * }
- */
+});

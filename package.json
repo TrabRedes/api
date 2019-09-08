@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "name": "Trab-Redes-1",
     "version": "1.0.0",
     "main": "index.js",
@@ -20,4 +21,20 @@
     "devDependencies": {
         "nodemon": "^1.19.1"
     }
+=======
+	"name": "NodejsStarterApp",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node app.js"
+	},
+	"dependencies": {
+		"express": "4.15.x",
+		"cfenv": "1.0.x"
+	},
+	"repository": {},
+	"engines": {
+		"node": "6.x"
+	} 
+>>>>>>> dd47ed8891a6b21523f08882c72752165c530975
 }

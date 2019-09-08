@@ -4,6 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const authRouter = require('./routers/authRouter');
 const rootRouter = require ('./routers/root');
+const dashboardRouter = require ('./routers/dashboardRouter');
 const Message = require('./models/message');
 
 const PORT = process.env.PORT || '3000'
@@ -14,6 +15,7 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 app.use('/auth', authRouter);
+app.use('/',dashboardRouter)
 app.use('/',rootRouter );
 
 http.listen(PORT, () => {
@@ -44,6 +46,5 @@ io.on('connection', (socket) => {
     })
     socket.on('save_on_database', (data) => {
         Message.create(data);
-
     })
 })
