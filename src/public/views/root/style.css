@@ -21,7 +21,7 @@ body {
 
 header {
   text-align: center;
-  margin-top:20px;
+  margin-top:2%;
 }
 
 h1 {
@@ -42,7 +42,7 @@ div#change_username {
 
 section#chatroom {
   border: 5px inset #8258fa;
-  height: 85%;
+  height: 82%;
   overflow: auto;
 }
 

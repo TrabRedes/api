@@ -3,7 +3,9 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const authRouter = require('./routers/authRouter');
-const rootRouter = require ('./routers/root')
+const rootRouter = require ('./routers/root');
+const Message = require('./models/message');
+
 const PORT = process.env.PORT || '3000'
 const app = express();
 const http = require('http').Server(app);
@@ -33,11 +35,15 @@ io.on('connection', (socket) => {
     socket.on('new_message', (data) => {
         //broadcast the new message
         
-        io.sockets.emit('new_message', {message : data.message, username : socket.username});
+        io.sockets.emit('new_message', {message : data.message, username : socket.username, token: data.token});
     })
 
     //listen on typing
     socket.on('typing', (data) => {
     	socket.broadcast.emit('typing', {username : socket.username})
+    })
+    socket.on('save_on_database', (data) => {
+        Message.create(data);
+
     })
 })
