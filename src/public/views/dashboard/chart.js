@@ -32,7 +32,7 @@ adicionaAoChart = data => {
   }
 };
 
-let url = "localhost";
+let url = "http://redes-chat.mybluemix.net/";
 var socket = io.connect(url);
 console.log("conectou na url:", url);
 socket.on("send_to_dashboard", data => {
