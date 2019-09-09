@@ -1,6 +1,6 @@
 $(function(){
  //make connection
- var socket = io.connect('http://redes-chat.mybluemix.net:80')
+ var socket = io.connect('localhost')
  //buttons and inputs
  var message = $("#message")
  var username = $("#username")
@@ -15,7 +15,6 @@ $(function(){
     data.time = new Date().toISOString();
     data.status = status
     socket.emit('save_on_database',data) 
-    
 }
 const sendMessage = ()=>{
     const data = {
@@ -24,7 +23,8 @@ const sendMessage = ()=>{
         token:Math.random()*10000000 
     }
     messageEvent(data, 'enviada')
-    socket.emit('new_message', {message : message.val(), token:data.token })
+    console.log(data)
+    socket.emit('new_message', data)
     feedback.html('');
     message.val('');
 }
@@ -60,5 +60,4 @@ input.addEventListener("keyup", function(event) {
  socket.on('typing', (data) => {
      feedback.html("<p><i>" + data.username + " is typing a message..." + "</i></p>")
  }) 
-
 });

@@ -1,5 +1,5 @@
 var ctx = document.getElementById("myChart").getContext("2d");
-
+console.log("entrou no chart");
 var chart = new Chart(ctx, {
   // The type of chart we want to create
   type: "line",
@@ -21,15 +21,21 @@ var chart = new Chart(ctx, {
   options: {}
 });
 adicionaAoChart = data => {
-  chart.labels.append(data.getHours());
-  chart.datasets[0].data.append(data.token);
-  chart.update();
+  let index = chart.data.labels.indexOf(data.token)
+  console.log(index)
+  if(index === -1 ){
+    chart.data.labels.push(data.token);
+    chart.data.datasets[0].data.push(data.time);
+  }else{
+    chart.data.datasets[0].data[index] = new Date(data.time) - new Date(chart.data.datasets[0].data[index]) ;  
+    chart.update();
+  }
 };
-$(function() {
-  var socket = io.connect("http://redes-chat.mybluemix.net/");
 
-  socket.on("save_on_database", data => {
-    adicionaAoChart(data);
-    console.log('chegou essa msg', data)
-  });
+let url = "localhost";
+var socket = io.connect(url);
+console.log("conectou na url:", url);
+socket.on("send_to_dashboard", data => {
+  console.log('entrou ', data)
+  adicionaAoChart(data);  
 });
