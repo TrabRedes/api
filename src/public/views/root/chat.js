@@ -33,7 +33,7 @@ const sendMessage = ()=>{
     sendMessage();
  })
 
- var input = document.getElementById("message");
+var input = document.getElementById("message");
 input.addEventListener("keyup", function(event) {
   if (event.keyCode === 13) {
     sendMessage();

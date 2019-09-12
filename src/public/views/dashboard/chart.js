@@ -27,6 +27,7 @@ adicionaAoChart = data => {
     chart.data.labels.push(data.token);
     chart.data.datasets[0].data.push(data.time);
   }else{
+    chart.data.labels[index]=index+1;
     chart.data.datasets[0].data[index] = new Date(data.time) - new Date(chart.data.datasets[0].data[index]) ;  
     chart.update();
   }
